@@ -15,7 +15,7 @@
       <div
         v-for="(item, index) in items"
         :key="index"
-        class="min-w-[180px] w-[180px] lg:min-w-0 lg:w-1/7"
+        class="min-w-[180px] w-[180px] lg:min-w-0 lg:w-1/5"
       >
         <CardItem :name="item.name" :img="item.img" />
       </div>

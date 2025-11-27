@@ -4,9 +4,9 @@
     id="navbar"
     class="fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-xs"
     :class="scrolledPastHero ? 'bg-white shadow-md' : 'bg-transparent'"
+    :style="{ backgroundColor: background }"
   >
     <div class="flex items-center justify-between py-3 px-6">
-      <!-- LOGO -->
       <img
         :src="logo"
         alt="Logo"
@@ -14,16 +14,19 @@
         :class="scrolledPastHero ? 'brightness-0 invert-0' : 'brightness-0 invert'"
       />
 
-      <!-- NAV LINKS -->
       <ul
         class="flex gap-6 font-semibold text-lg transition-all duration-300"
         :class="scrolledPastHero ? 'text-black' : 'text-white'"
       >
-        <li class="cursor-pointer hover:opacity-60">Home</li>
-        <li class="cursor-pointer hover:opacity-60">Destinasi</li>
-        <li class="cursor-pointer hover:opacity-60">Budaya dan Sejarah</li>
-        <li class="cursor-pointer hover:opacity-60">Peta Interaktif</li>
-        <li class="cursor-pointer hover:opacity-60">Tentang</li>
+        <router-link to="/" class="cursor-pointer hover:opacity-60">Home</router-link>
+        <router-link to="/destinasi" class="cursor-pointer hover:opacity-60">Destinasi</router-link>
+        <router-link to="/budaya-sejarah" class="cursor-pointer hover:opacity-60"
+          >Budaya dan Sejarah</router-link
+        >
+        <router-link to="/peta" class="cursor-pointer hover:opacity-60"
+          >Peta Interaktif</router-link
+        >
+        <router-link to="/tentang" class="cursor-pointer hover:opacity-60">Tentang</router-link>
       </ul>
 
       <MagnifyingGlassIcon
@@ -44,6 +47,10 @@ const emit = defineEmits(['navbar-height'])
 
 defineProps({
   scrolledPastHero: Boolean,
+  background: {
+    type: String,
+    default: 'white',
+  },
 })
 
 function onSearchClick() {
