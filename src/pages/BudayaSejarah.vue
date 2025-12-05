@@ -17,6 +17,20 @@
     </h1>
   </section>
 
+  <div class="w-full mt-5 px-6">
+    <div
+      class="w-full md:w-1/3 lg:w-1/5 bg-white rounded-xl flex items-center gap-3 px-4 py-2 border border-gray-400"
+    >
+      <MagnifyingGlassIcon class="h-6 w-6 text-gray-500" />
+      <input
+        v-model="search"
+        type="text"
+        placeholder="Cari destinasi..."
+        class="w-full outline-none text-gray-700 placeholder-gray-500"
+      />
+    </div>
+  </div>
+
   <!-- KIRIM DATA KE CARDGRID -->
   <CardGrid
     :items="paginatedItems"
@@ -29,7 +43,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import CardGrid from '@/components/CardGrid.vue'
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
 import imageBudaya from '@/assets/Rectangle 43 (1).png'
+
+const search = ref('')
 
 /* ---------------------------
    ALL DATA DARI DESTINASI
@@ -48,8 +65,11 @@ const itemsPerPage = 15 // 5x3 grid per page
 const totalPages = computed(() => Math.ceil(items.value.length / itemsPerPage))
 
 const paginatedItems = computed(() => {
+  const filtered = items.value.filter((i) =>
+    i.name.toLowerCase().includes(search.value.toLowerCase()),
+  )
   const start = (currentPage.value - 1) * itemsPerPage
-  return items.value.slice(start, start + itemsPerPage)
+  return filtered.slice(start, start + itemsPerPage)
 })
 
 /* ---------------------------
