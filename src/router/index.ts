@@ -3,6 +3,8 @@ import Home from '@/pages/Home.vue'
 import Destinasi from '@/pages/Destinasi.vue'
 import BudayaSejarah from '@/pages/BudayaSejarah.vue'
 import Tentang from '@/pages/Tentang.vue'
+import DetailDestinasi from '@/pages/DetailDestinasi.vue'
+import PetaInteraktif from '@/pages/PetaInteraktif.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,7 +17,25 @@ const router = createRouter({
       name: 'Tentang',
       component: Tentang,
       meta: {
-        offsetTop: 15,
+        navbarColor: '#0F2462',
+        offsetTop: 20,
+      },
+    },
+    {
+      path: '/destinasi/:id',
+      component: DetailDestinasi,
+      props: true,
+      meta: {
+        navbarColor: '#0F2462',
+        offsetTop: 20,
+      },
+    },
+    {
+      path: '/peta-interaktif',
+      component: PetaInteraktif,
+      meta: {
+        navbarColor: '#0F2462',
+        offsetTop: 20,
       },
     },
   ],

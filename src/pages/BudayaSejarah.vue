@@ -13,24 +13,52 @@
     <h1
       class="relative text-white font-extrabold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl px-6 text-center max-w-[1200px]"
     >
-      Lihat Budaya-budaya di Samarinda beserta Sejarahnya
+      Temukan Destinasi Wisata yang Menarik di Samarinda!
     </h1>
   </section>
 
-  <CardGrid />
+  <!-- KIRIM DATA KE CARDGRID -->
+  <CardGrid
+    :items="paginatedItems"
+    :currentPage="currentPage"
+    :totalPages="totalPages"
+    @update:page="currentPage = $event"
+  />
 </template>
 
 <script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
 import CardGrid from '@/components/CardGrid.vue'
 import imageBudaya from '@/assets/Rectangle 43 (1).png'
-import { onMounted } from 'vue'
 
+/* ---------------------------
+   ALL DATA DARI DESTINASI
+--------------------------- */
+const items = ref(
+  Array.from({ length: 50 }, (_, i) => ({
+    id: i + 1,
+    name: `Tempat Wisata ${i + 1}`,
+    img: '',
+  })),
+)
+
+const currentPage = ref(1)
+const itemsPerPage = 15 // 5x3 grid per page
+
+const totalPages = computed(() => Math.ceil(items.value.length / itemsPerPage))
+
+const paginatedItems = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  return items.value.slice(start, start + itemsPerPage)
+})
+
+/* ---------------------------
+   HERO HEIGHT EMITTER
+--------------------------- */
 const emit = defineEmits(['hero-height'])
 
 onMounted(() => {
-  const heroSection = document.getElementById('hero-section')
-  if (heroSection) {
-    emit('hero-height', heroSection.clientHeight)
-  }
+  const hero = document.getElementById('hero-section')
+  if (hero) emit('hero-height', hero.clientHeight)
 })
 </script>

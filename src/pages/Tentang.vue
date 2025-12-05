@@ -39,9 +39,9 @@ import imageTentang1 from '@/assets/image 27.png'
 import imageTentang2 from '@/assets/image 28.png'
 import { onMounted } from 'vue'
 
-const emit = defineEmits(['change-navbar-bg'])
+const emit = defineEmits(['hero-height'])
 
 onMounted(() => {
-  emit('change-navbar-bg', '#0F2462')
+  emit('hero-height', 0)
 })
 </script>

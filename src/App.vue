@@ -63,9 +63,10 @@ onUnmounted(() => {
 watch(
   () => route.fullPath,
   () => {
-    if (heroHeight.value > 0) {
-      updateScroll()
-    }
+    isOverHero.value = true
+
+    navbarBackground.value = String(route.meta.navbarColor ?? 'transparent')
+
     pageOffset.value = Number(route.meta.offsetTop ?? 0)
   },
   { immediate: true },
