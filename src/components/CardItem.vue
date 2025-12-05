@@ -1,7 +1,7 @@
 <template>
   <router-link
     :to="`/destinasi/${id}`"
-    class="bg-white rounded-xl shadow hover:shadow-lg transition p-3 flex flex-col items-center"
+    class="bg-white rounded-xl shadow hover:shadow-xl transition p-3 flex flex-col items-center border border-gray-300"
   >
     <div
       class="w-full aspect-square rounded-md overflow-hidden bg-gray-200 grid place-items-center"
