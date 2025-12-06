@@ -1,14 +1,12 @@
 <template>
   <div class="min-h-screen bg-white">
     <div class="max-w-[1728px] mx-auto px-6 md:px-12 lg:px-26 py-8 md:py-14">
-      <!-- Judul -->
       <h1
         class="text-2xl md:text-4xl lg:text-5xl font-bold text-[#4169E1] mb-4 md:mb-6 leading-tight"
       >
         Peta Detinasi Wisata Samarinda
       </h1>
 
-      <!-- Deskprisi -->
       <p
         class="text-sm md:text-lg lg:text-xl font-medium text-black mb-6 md:mb-10 leading-normal max-w-4xl"
       >
@@ -17,10 +15,8 @@
         uniknya yang berbeda.
       </p>
 
-      <!-- Filter Box -->
       <div class="border border-black/30 rounded-[18px] p-5 md:p-7 mb-8 md:mb-12 max-w-2xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-          <!-- Kecamatan -->
           <div>
             <label class="block text-lg md:text-xl font-medium text-black mb-2"> Kecamatan </label>
             <div class="relative">
@@ -32,7 +28,6 @@
             </div>
           </div>
 
-          <!-- Pencarian -->
           <div>
             <label class="block text-lg md:text-xl font-medium text-black mb-2"> Pencarian </label>
             <input
@@ -44,13 +39,19 @@
         </div>
       </div>
 
-      <MapView :lat="detail.lat" :lng="detail.lng" />
+      <MapView
+        :lat="detail.lat"
+        :lng="detail.lng"
+        :selectedDestination="{
+          name: 'Air Terjun Tanah Merah',
+          image: image,
+        }"
+      />
 
       <div class="mt-5">
         <h2 class="text-2xl font-semibold mb-4">Temukan Destinasi Lainnya!</h2>
       </div>
 
-      <!-- Lihat Semua -->
       <div>
         <CardList
           title="Destinasi Wisata"
@@ -78,6 +79,7 @@
 import { onMounted } from 'vue'
 import MapView from '@/components/MapView.vue'
 import CardList from '@/components/CardList.vue'
+import image from '@/assets/image 24.png'
 
 const detail = {
   lat: -0.4501,
