@@ -1,59 +1,78 @@
 <template>
-  <div class="w-full px-6 py-10 space-y-10">
-    <!-- Judul -->
-    <div>
-      <h1 class="text-3xl font-bold text-gray-900">{{ detail.name }}</h1>
-      <p class="text-lg text-gray-600">{{ detail.lokasi }}</p>
+  <div class="w-full min-h-screen">
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 border-b border-gray-200 px-4 md:px-6 py-3">
+      <Breadcrumb
+        :items="[
+          { label: 'Budaya & Sejarah', path: '/budaya-sejarah' },
+          { label: detail.name, path: '' },
+        ]"
+      />
     </div>
 
-    <!-- Grid Gambar dan Deskripsi -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-      <div class="flex justify-center items-start">
-        <img
-          :src="detailImage"
-          v-if="detailImage"
-          :style="{ height: infoHeight + 'px' }"
-          class="rounded-xl shadow object-contain"
-          ref="imageRef"
-        />
-      </div>
-
-      <!-- Deskripsi Budaya -->
-      <div class="border rounded-xl p-6 shadow bg-white space-y-4 h-fit" ref="infoRef">
-        <h3 class="text-xl font-semibold">Deskripsi</h3>
-        <p class="text-gray-700 leading-relaxed">
-          {{ detail.deskripsi }}
-        </p>
+    <!-- Search Section - Terpisah dari Breadcrumb -->
+    <div class="bg-white border-b border-gray-200 px-4 md:px-6 py-4">
+      <div
+        class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between max-w-7xl mx-auto"
+      >
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900">{{ detail.name }}</h1>
+        <p class="text-sm md:text-lg text-gray-600">{{ detail.lokasi }}</p>
       </div>
     </div>
 
-    <!-- Sejarah Budaya -->
-    <div class="border rounded-xl p-6 shadow bg-white space-y-2">
-      <h3 class="text-xl font-semibold mb-2">Sejarah</h3>
-      <p class="text-gray-700 leading-relaxed">{{ detail.sejarah }}</p>
-    </div>
+    <!-- Content Area -->
+    <div class="px-4 md:px-6 py-6 md:py-10 space-y-6 md:space-y-10 max-w-7xl mx-auto">
+      <!-- Grid Gambar dan Deskripsi -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+        <div class="flex justify-center items-start">
+          <img
+            :src="detailImage"
+            v-if="detailImage"
+            :style="{ height: infoHeight + 'px' }"
+            class="rounded-xl shadow object-contain w-full"
+            ref="imageRef"
+          />
+        </div>
 
-    <!-- Budaya Lainnya -->
-    <div>
-      <h2 class="text-2xl font-semibold mb-4">Temukan Budaya Lainnya!</h2>
-    </div>
+        <!-- Deskripsi Budaya -->
+        <div class="border rounded-xl p-4 md:p-6 shadow bg-white space-y-4 h-fit" ref="infoRef">
+          <h3 class="text-lg md:text-xl font-semibold">Deskripsi</h3>
+          <p class="text-gray-700 leading-relaxed text-sm md:text-base">
+            {{ detail.deskripsi }}
+          </p>
+        </div>
+      </div>
 
-    <div>
-      <CardList basePath="budaya-sejarah" />
-    </div>
+      <!-- Sejarah Budaya -->
+      <div class="border rounded-xl p-4 md:p-6 shadow bg-white space-y-2">
+        <h3 class="text-lg md:text-xl font-semibold mb-2">Sejarah</h3>
+        <p class="text-gray-700 leading-relaxed text-sm md:text-base">{{ detail.sejarah }}</p>
+      </div>
 
-    <!-- Lihat Semua -->
-    <router-link class="flex justify-center" to="/budaya-sejarah">
-      <button class="px-6 py-3 bg-gray-900 text-white rounded-lg shadow hover:bg-black transition">
-        Lihat Semua
-      </button>
-    </router-link>
+      <!-- Budaya Lainnya -->
+      <div class="mt-6 md:mt-12">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-6">Temukan Budaya Lainnya!</h2>
+        <CardList basePath="budaya-sejarah" />
+      </div>
+
+      <!-- Lihat Semua -->
+      <div class="flex justify-center mt-8">
+        <router-link to="/budaya-sejarah">
+          <button
+            class="px-6 md:px-8 py-2 md:py-3 bg-gray-900 text-white rounded-lg shadow hover:bg-black transition text-sm md:text-base"
+          >
+            Lihat Semua
+          </button>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
 import { ref, onMounted, watch, computed, nextTick } from 'vue'
+import Breadcrumb from '@/components/Breadcrumb.vue'
 import CardList from '@/components/CardList.vue'
 import budayaData from '@/data/budaya-sejarah.json'
 

@@ -36,11 +36,13 @@ const props = defineProps<{
 const itemsData = computed((): Item[] => {
   const data = props.basePath === 'destinasi' ? destinasiData : budayaData
 
-  return data.map((d: any) => ({
-    ...d,
-    image: d.image
-      ? new URL(`../assets/${props.basePath}/${d.image}`, import.meta.url).href
-      : undefined,
-  }))
+  return data
+    .map((d: any) => ({
+      ...d,
+      image: d.image
+        ? new URL(`../assets/${props.basePath}/${d.image}`, import.meta.url).href
+        : undefined,
+    }))
+    .slice(0, 5)
 })
 </script>

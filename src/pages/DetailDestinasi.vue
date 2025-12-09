@@ -1,73 +1,94 @@
 <template>
-  <div class="w-full px-6 py-10 space-y-5">
-    <!-- Judul -->
-    <div>
-      <h1 class="text-3xl font-bold text-gray-900">{{ detail.name }}</h1>
-      <p class="text-lg text-gray-600">{{ detail.lokasi }}</p>
+  <div class="w-full min-h-screen">
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 border-b border-gray-200 px-4 md:px-6 py-3">
+      <Breadcrumb
+        :items="[
+          { label: 'Destinasi', path: '/destinasi' },
+          { label: detail.name, path: '' },
+        ]"
+      />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 items-start">
-      <!-- Banner Gambar -->
-      <div class="flex justify-center items-start">
-        <img
-          :src="detailImage"
-          v-if="detailImage"
-          :style="{ height: infoHeight + 'px' }"
-          class="rounded-xl shadow object-contain"
-          ref="imageRef"
-        />
+    <!-- Search Section - Terpisah dari Breadcrumb -->
+    <div class="bg-white border-b border-gray-200 px-4 md:px-6 py-4">
+      <div
+        class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between max-w-7xl mx-auto"
+      >
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900">{{ detail.name }}</h1>
+        <p class="text-sm md:text-lg text-gray-600">{{ detail.lokasi }}</p>
       </div>
+    </div>
 
-      <!-- Informasi Umum -->
-      <div class="border rounded-xl p-6 shadow bg-white space-y-2 h-fit" ref="infoRef">
-        <h3 class="text-xl font-semibold">Informasi Umum</h3>
-
-        <div>
-          <h4 class="font-medium text-gray-700">Alamat</h4>
-          <p class="text-gray-600">{{ detail.alamat }}</p>
+    <!-- Content Area -->
+    <div class="px-4 md:px-6 py-6 md:py-10 space-y-5 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+        <!-- Banner Gambar -->
+        <div class="flex justify-center items-start">
+          <img
+            :src="detailImage"
+            v-if="detailImage"
+            :style="{ height: infoHeight + 'px' }"
+            class="rounded-xl shadow object-contain w-full"
+            ref="imageRef"
+          />
         </div>
 
-        <div>
-          <h4 class="font-medium text-gray-700">Instagram</h4>
-          <a
-            :href="`https://www.instagram.com/${detail.instagram}`"
-            class="text-blue-600 hover:underline"
-            target="_blank"
-            >{{ detail.instagram }}</a
+        <!-- Informasi Umum -->
+        <div class="border rounded-xl p-4 md:p-6 shadow bg-white space-y-4 h-fit" ref="infoRef">
+          <h3 class="text-lg md:text-xl font-semibold">Informasi Umum</h3>
+
+          <div>
+            <h4 class="font-medium text-gray-700">Alamat</h4>
+            <p class="text-gray-600 text-sm md:text-base">{{ detail.alamat }}</p>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-gray-700">Instagram</h4>
+            <a
+              :href="`https://www.instagram.com/${detail.instagram}`"
+              class="text-blue-600 hover:underline text-sm md:text-base"
+              target="_blank"
+              >{{ detail.instagram }}</a
+            >
+          </div>
+
+          <button
+            class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
           >
+            <span>Lihat Lokasi</span>
+          </button>
         </div>
+      </div>
 
-        <button
-          class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          <span>Lihat Lokasi</span>
-        </button>
+      <!-- Deskripsi -->
+      <div class="mt-6 md:mt-10">
+        <p class="text-gray-700 leading-relaxed text-sm md:text-base">{{ detail.deskripsi }}</p>
+      </div>
+
+      <!-- Destinasi Lainnya -->
+      <div class="mt-8 md:mt-12">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-6">Temukan Destinasi Lainnya!</h2>
+        <CardList basePath="destinasi" />
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <router-link to="/destinasi">
+          <button
+            class="px-6 md:px-8 py-2 md:py-3 bg-gray-900 text-white rounded-lg shadow hover:bg-black transition text-sm md:text-base"
+          >
+            Lihat Semua
+          </button>
+        </router-link>
       </div>
     </div>
-
-    <!-- Deskripsi -->
-    <p class="text-gray-700 leading-relaxed max-w-3xl">{{ detail.deskripsi }}</p>
-
-    <!-- Destinasi Lainnya -->
-    <div>
-      <h2 class="text-2xl font-semibold mb-4">Temukan Destinasi Lainnya!</h2>
-    </div>
-
-    <div>
-      <CardList basePath="destinasi" />
-    </div>
-
-    <router-link class="flex justify-center" to="/destinasi">
-      <button class="px-6 py-3 bg-gray-900 text-white rounded-lg shadow hover:bg-black transition">
-        Lihat Semua
-      </button>
-    </router-link>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
 import { ref, onMounted, watch, computed, nextTick } from 'vue'
+import Breadcrumb from '@/components/Breadcrumb.vue'
 import CardList from '@/components/CardList.vue'
 import destinasiData from '@/data/destinasi.json'
 

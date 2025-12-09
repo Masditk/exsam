@@ -1,10 +1,12 @@
 <template>
-  <div id="map" class="w-full h-80 rounded-xl shadow"></div>
+  <div id="map-container" class="w-full h-80 rounded-xl shadow">
+    <div id="map" class="w-full h-full"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import L from 'leaflet'
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, nextTick, ref, onBeforeUnmount } from 'vue'
 
 const props = defineProps<{
   destinations: Array<{
@@ -17,6 +19,7 @@ const props = defineProps<{
 
 let map: L.Map | null = null
 const markers: L.Marker[] = []
+const mapInitialized = ref(false)
 
 // Fungsi untuk membuat popup content
 const createPopupContent = (dest: { name: string; image?: string }) => `
@@ -31,44 +34,84 @@ const createPopupContent = (dest: { name: string; image?: string }) => `
   </div>
 `
 
-onMounted(() => {
-  if (!props.destinations.length) return
+const initializeMap = () => {
+  if (mapInitialized.value || !props.destinations || !props.destinations.length) return
 
-  // Inisialisasi map dengan posisi marker pertama
-  const first = props.destinations[0]
-  map = L.map('map').setView([first.lat, first.lng], 10)
+  try {
+    const mapElement = document.getElementById('map')
+    if (!mapElement) {
+      console.warn('Map element not found, retrying...')
+      return
+    }
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-  }).addTo(map)
+    // Inisialisasi map dengan posisi marker pertama
+    const first = props.destinations[0]
+    if (!first || typeof first.lat !== 'number' || typeof first.lng !== 'number') {
+      console.warn('Invalid destination data')
+      return
+    }
 
-  // Tambahkan semua marker
-  props.destinations.forEach((dest) => {
-    const m = L.marker([dest.lat, dest.lng]).addTo(map!).bindPopup(createPopupContent(dest), {
-      className: 'custom-popup',
+    map = L.map('map').setView([first.lat, first.lng], 10)
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    }).addTo(map)
+
+    // Tambahkan semua marker
+    props.destinations.forEach((dest) => {
+      if (typeof dest.lat === 'number' && typeof dest.lng === 'number') {
+        const m = L.marker([dest.lat, dest.lng]).addTo(map!).bindPopup(createPopupContent(dest), {
+          className: 'custom-popup',
+        })
+        markers.push(m)
+      }
     })
-    markers.push(m)
-  })
+
+    mapInitialized.value = true
+  } catch (error) {
+    console.error('Error initializing map:', error)
+  }
+}
+
+onMounted(async () => {
+  await nextTick()
+  initializeMap()
+})
+
+onBeforeUnmount(() => {
+  if (map) {
+    markers.forEach((m) => {
+      if (map) map.removeLayer(m)
+    })
+    markers.length = 0
+    map.remove()
+    map = null
+  }
 })
 
 // Watch untuk props.destinations supaya marker bisa update jika berubah
 watch(
   () => props.destinations,
   (newDestinations) => {
-    if (!map) return
+    if (!map || !mapInitialized.value) return
 
     // Hapus semua marker lama
-    markers.forEach((m) => map.removeLayer(m))
+    markers.forEach((m) => {
+      if (map) map.removeLayer(m)
+    })
     markers.length = 0
 
     if (!newDestinations.length) return
 
     // Set view ke marker pertama
     const first = newDestinations[0]
-    map.setView([first.lat, first.lng], 12)
+    if (first) {
+      map.setView([first.lat, first.lng], 12)
+    }
 
     // Tambahkan semua marker baru
     newDestinations.forEach((dest) => {
+      if (!map) return
       const m = L.marker([dest.lat, dest.lng]).addTo(map).bindPopup(createPopupContent(dest), {
         className: 'custom-popup',
       })

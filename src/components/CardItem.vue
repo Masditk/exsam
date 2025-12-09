@@ -24,7 +24,7 @@ const props = defineProps<{
 }>()
 
 const resolvedLink = computed(() => {
-  let path = props.basePath
+  let path = props.basePath || ''
   if (!path.startsWith('/')) path = '/' + path
   path = path?.replace(/\/+$/, '')
   return `${path}/${props.slug}`

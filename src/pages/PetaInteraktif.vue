@@ -44,22 +44,14 @@
         </div>
       </div>
 
-      <MapView :destinations="filteredDestinations" />
+      <MapView :destinations="filteredDestinations || []" />
 
       <div class="mt-5">
         <h2 class="text-2xl font-semibold mb-4">Temukan Destinasi Lainnya!</h2>
       </div>
 
       <div>
-        <CardList
-          title="Destinasi Wisata"
-          subtitle="Destinasi wisata yang ada di Samarinda"
-          :items="[
-            { id: 1, name: 'Croatia' },
-            { id: 2, name: 'Morocco' },
-            { id: 3, name: 'Mexico' },
-          ]"
-        />
+        <CardList basePath="destinasi" />
       </div>
 
       <div class="flex justify-center mt-5">
@@ -83,16 +75,22 @@ const search = ref('')
 const selectedKecamatan = ref('Semua Kecamatan')
 
 const filteredDestinations = computed(() =>
-  destinasiData.filter((dest) => {
-    const matchName = dest.name.toLowerCase().includes(search.value.toLowerCase())
+  destinasiData
+    .filter((dest) => {
+      const matchName = dest.name.toLowerCase().includes(search.value.toLowerCase())
 
-    const matchKec =
-      !selectedKecamatan.value || selectedKecamatan.value === 'Semua Kecamatan'
-        ? true
-        : dest.lokasi === selectedKecamatan.value
+      const matchKec =
+        !selectedKecamatan.value || selectedKecamatan.value === 'Semua Kecamatan'
+          ? true
+          : dest.lokasi === selectedKecamatan.value
 
-    return matchName && matchKec
-  }),
+      return matchName && matchKec
+    })
+    .map((d) => ({
+      // Kirimkan semua properti penting, dan ubah `image` menjadi URL penuh bila ada
+      ...d,
+      image: d.image ? new URL(`../assets/destinasi/${d.image}`, import.meta.url).href : undefined,
+    })),
 )
 
 const uniqueKecamatan = computed(() => {

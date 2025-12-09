@@ -6,7 +6,8 @@
     :class="scrolledPastHero ? 'bg-white shadow-md' : 'bg-transparent'"
     :style="{ backgroundColor: background }"
   >
-    <div class="flex items-center justify-between py-3 px-6">
+    <!-- Desktop & Tablet View -->
+    <div class="hidden md:flex items-center justify-between py-3 px-6">
       <router-link to="/">
         <img
           :src="logo"
@@ -49,7 +50,7 @@
         >
       </ul>
 
-      <div class="relative flex items-center w-[50px] md:w-[60px] justify-end">
+      <div class="relative flex items-center w-[60px] justify-end">
         <!-- Input Search -->
         <transition name="fade-slide">
           <input
@@ -74,6 +75,127 @@
         />
       </div>
     </div>
+
+    <!-- Mobile View -->
+    <div class="md:hidden flex items-center justify-between py-3 px-4">
+      <router-link to="/">
+        <img
+          :src="logo"
+          alt="Logo"
+          class="h-8 w-auto object-contain transition-all duration-300"
+          :class="scrolledPastHero ? 'brightness-0 invert-0' : 'brightness-0 invert'"
+        />
+      </router-link>
+
+      <div class="flex items-center gap-2">
+        <!-- Mobile Search Icon -->
+        <div class="relative flex items-center">
+          <transition name="fade-slide">
+            <input
+              v-show="searchActive"
+              type="text"
+              v-model="query"
+              ref="mobileSearchInput"
+              placeholder="Cari..."
+              @blur="!preventBlur && closeSearch()"
+              @keydown.esc="closeSearch"
+              @keydown.enter="doSearch"
+              class="w-32 pl-2 pr-8 py-1 rounded-lg outline-none border border-gray-300 transition-all duration-300 text-sm"
+              :class="inputTextClass"
+            />
+          </transition>
+          <MagnifyingGlassIcon
+            class="absolute right-2 h-5 w-5 cursor-pointer transition-opacity duration-300"
+            :class="scrolledPastHero ? 'text-black' : 'text-white'"
+            @mousedown.prevent="handleMobileSearchClick"
+          />
+        </div>
+
+        <!-- Hamburger Menu -->
+        <button
+          @click="mobileMenuOpen = !mobileMenuOpen"
+          class="p-2 rounded transition-all"
+          :class="
+            scrolledPastHero ? 'text-black hover:bg-gray-100' : 'text-white hover:bg-white/10'
+          "
+        >
+          <svg
+            v-if="!mobileMenuOpen"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <transition name="slide-down">
+      <div
+        v-if="mobileMenuOpen"
+        class="md:hidden bg-white border-t border-gray-200 shadow-lg"
+        :style="scrolledPastHero ? {} : { backgroundColor: 'rgba(255, 255, 255, 0.95)' }"
+      >
+        <ul class="flex flex-col divide-y divide-gray-200">
+          <li>
+            <router-link
+              to="/"
+              class="block px-4 py-3 text-gray-900 hover:bg-gray-50 transition-colors"
+              @click="mobileMenuOpen = false"
+              >Home</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/destinasi"
+              class="block px-4 py-3 text-gray-900 hover:bg-gray-50 transition-colors"
+              @click="mobileMenuOpen = false"
+              >Destinasi</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/budaya-sejarah"
+              class="block px-4 py-3 text-gray-900 hover:bg-gray-50 transition-colors"
+              @click="mobileMenuOpen = false"
+              >Budaya dan Sejarah</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/peta-interaktif"
+              class="block px-4 py-3 text-gray-900 hover:bg-gray-50 transition-colors"
+              @click="mobileMenuOpen = false"
+              >Peta Interaktif</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/tentang"
+              class="block px-4 py-3 text-gray-900 hover:bg-gray-50 transition-colors"
+              @click="mobileMenuOpen = false"
+              >Tentang</router-link
+            >
+          </li>
+        </ul>
+      </div>
+    </transition>
   </nav>
 </template>
 
@@ -86,9 +208,11 @@ import logo from '@/assets/logo.png'
 const router = useRouter()
 const route = useRoute()
 const searchActive = ref(false)
+const mobileMenuOpen = ref(false)
 const preventBlur = ref(false)
 const query = ref('')
 const searchInput = ref<HTMLInputElement | null>(null)
+const mobileSearchInput = ref<HTMLInputElement | null>(null)
 const emit = defineEmits(['navbar-height'])
 
 const inputTextClass = computed(() => {
@@ -116,6 +240,23 @@ const handleSearchClick = () => {
     openSearch()
     nextTick(() => {
       searchInput.value?.focus()
+    })
+  }
+
+  setTimeout(() => {
+    preventBlur.value = false
+  }, 50)
+}
+
+const handleMobileSearchClick = () => {
+  preventBlur.value = true
+
+  if (searchActive.value) {
+    doSearch()
+  } else {
+    openSearch()
+    nextTick(() => {
+      mobileSearchInput.value?.focus()
     })
   }
 
@@ -185,6 +326,28 @@ onMounted(() => {
 
 .fade-slide-enter-active,
 .fade-slide-leave-active {
+  transition: all 0.25s ease;
+}
+
+.slide-down-enter-from {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+.slide-down-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide-down-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide-down-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.slide-down-enter-active,
+.slide-down-leave-active {
   transition: all 0.25s ease;
 }
 </style>
