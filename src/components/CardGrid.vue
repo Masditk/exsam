@@ -28,7 +28,7 @@ import CardItem from '@/components/CardItem.vue'
 import Pagination from '@/components/Pagination.vue'
 
 defineProps<{
-  items: Array<{ id: number; slug: string; name: string; image: string }>
+  items: Array<{ id: number; slug: string; name: string; image?: string }>
   currentPage: number
   totalPages: number
   basePath?: string

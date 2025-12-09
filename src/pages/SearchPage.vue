@@ -89,7 +89,7 @@ const filteredDestinasi = computed(() => {
     .filter((item) => item.name.toLowerCase().includes(q.value.toLowerCase()))
     .map((d) => ({
       ...d,
-      image: d.image ? new URL(`../assets/destinasi/${d.image}`, import.meta.url).href : undefined,
+      image: d.image ? new URL(`../assets/destinasi/${d.image}`, import.meta.url).href : '',
     }))
 })
 
