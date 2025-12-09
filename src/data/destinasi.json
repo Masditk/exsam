@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "name": "Masjid Islamic Center Samarinda",
+    "slug": "masjid-islamic-center-samarinda",
+    "lokasi": "Sungai Kunjang",
+    "alamat": "Jl. Slamet Riyadi No.1, Tlk. Lerong Ulu, Kec. Sungai Kunjang, Kota Samarinda, Kalimantan Timur 75243",
+    "image": "MICS.jpeg",
+    "lat": -0.502389,
+    "lng": 117.120094
+  },
+  {
+    "id": 2,
+    "name": "BIG Mall Samarinda",
+    "slug": "big-mall-samarinda",
+    "lokasi": "Sungai Kunjang",
+    "alamat": "Jl. Untung Suropati No.08, Karang Asam Ulu, Kec. Sungai Kunjang, Kota Samarinda, Kalimantan Timur 75243",
+    "image": "BMS.jpeg",
+    "lat": -0.5262742,
+    "lng": 117.1159382
+  },
+  {
+    "id": 3,
+    "name": "Desa Budaya Pampang",
+    "slug": "desa-budaya-pampang",
+    "lokasi": "Samarinda Utara",
+    "alamat": "Jl. Wisata Budaya Pampang, No.32, RT.03, Kelurahan Budaya Pampang, Kec Samarinda Utara, Arah Samarinda-Bontang, 5 KM dari jalan raya, Sebelum Bandara APT.Pranoto, Sungai Siring, Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75119",
+    "image": "DBP.jpeg",
+    "lat": -0.3774807,
+    "lng": 117.2300917
+  },
+  {
+    "id": 4,
+    "name": "Taman Tepian Mahakam",
+    "slug": "taman-tepian-mahakam",
+    "lokasi": "Samarinda Kota",
+    "alamat": "F4XR+4PP, Jl. Gajah Mada, Bugis, Kec. Samarinda Kota, Kota Samarinda, Kalimantan Timur 75242",
+    "image": "TTM.jpeg",
+    "lat": -0.5021589,
+    "lng": 117.1418363
+  },
+  {
+    "id": 5,
+    "name": "Wahana Air Jessica Water Park",
+    "slug": "wahana-air-jessica-water-park",
+    "lokasi": "Loa Janan Ilir",
+    "alamat": "Harapan Baru, Kec. Loa Janan Ilir, Kota Samarinda, Kalimantan Timur 75242",
+    "image": "JWP.jpg",
+    "lat": -0.5415779,
+    "lng": 117.1133943
+  },
+  {
+    "id": 6,
+    "name": "Rumah Ulin Arya",
+    "slug": "rumah-ulin-arya",
+    "lokasi": "Samarinda Utara",
+    "alamat": "Jalan Teluk Batu Jl. Bayur No.RT.20, Sempaja Utara, Kec. Samarinda Utara, Kota Samarinda Utara, Kalimantan Timur 75119",
+    "image": "RUA.jpeg",
+    "lat": -0.3876881,
+    "lng": 117.1624861
+  },
+  {
+    "id": 7,
+    "name": "Kampung Tenun",
+    "slug": "kampung-tenun",
+    "lokasi": "Samarinda Seberang",
+    "alamat": "F4QW+JWF, Gg. Pertenunan Jl. Hos Cokro Aminoto, Baqa, Kec. Samarinda Seberang, Kota Samarinda, Kalimantan Timur 75133",
+    "image": "KT.jpg",
+    "lat": -0.5109497,
+    "lng": 117.1472915
+  },
+  {
+    "id": 8,
+    "name": "Mahakam Lampion Garden",
+    "slug": "mahakam-lampion-garden",
+    "lokasi": "Sungai Kunjang",
+    "alamat": "Jl. Slamet Riyadi No.75, Karang Asam Ilir, Kec. Sungai Kunjang, Kota Samarinda, Kalimantan Timur 75243",
+    "image": "MLG.jpeg",
+    "lat": -0.5065446,
+    "lng": 117.1196193
+  },
+  {
+    "id": 9,
+    "name": "Air Terjun Berambai",
+    "slug": "air-terjun-berambai",
+    "lokasi": "Samarinda Utara",
+    "alamat": "M58V+MCM, Sempaja Utara, Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75124",
+    "image": "ATB.jpeg",
+    "lat": -0.3332921,
+    "lng": 117.1935533
+  },
+  {
+    "id": 10,
+    "name": "Jungle Water World",
+    "slug": "jungle-water-world",
+    "lokasi": "Samarinda Utara",
+    "alamat": "Km. 24, Guntunglai, Jl. Poros Samarinda - Bontang, Tanah Merah, Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75117",
+    "image": "JWW.jpg",
+    "lat": -0.417445,
+    "lng": 117.236795
+  },
+  {
+    "id": 11,
+    "name": "Taman Budaya Samarinda",
+    "slug": "taman-budaya-samarinda",
+    "lokasi": "Sungai Pinang",
+    "alamat": "G5C7+H8M, Jl. Kemakmuran, Sungai Pinang Dalam, Kec. Sungai Pinang, Kota Samarinda, Kalimantan Timur 75242",
+    "image": "TBS.jpeg",
+    "lat": -0.4785314,
+    "lng": 117.1632954
+  },
+  {
+    "id": 12,
+    "name": "Taman Salma Shofa Samarinda",
+    "slug": "taman-salma-shofa-samarinda",
+    "lokasi": "Sungai Pinang",
+    "alamat": "Jl. Kalan Luas No.Desa, Mugirejo, Kec. Sungai Pinang, Kota Samarinda, Kalimantan Timur 75241",
+    "image": "TS3.jpg",
+    "lat": -0.4814344,
+    "lng": 117.2159984
+  },
+  {
+    "id": 13,
+    "name": "Wisata Tebing Lonceng",
+    "slug": "wisata-tebing-lonceng",
+    "lokasi": "Samarinda Seberang",
+    "alamat": "Gunung pemancar RCTI Jl. Dwikora, gunung RCTI, Kec. Samarinda Seberang, Kota Samarinda, Kalimantan Timur 75251",
+    "image": "WTL.jpeg",
+    "lat": -0.5345642,
+    "lng": 117.1485106
+  },
+  {
+    "id": 14,
+    "name": "Kolam Wisata Tjiu Palace",
+    "slug": "kolam-wisata-tjiu-palace",
+    "lokasi": "Sambutan",
+    "alamat": "Jl. Sultan Sulaiman No.6, Sambutan, Kec. Sambutan, Kota Samarinda, Kalimantan Timur 75115",
+    "image": "KWTP.jpeg",
+    "lat": -0.512054,
+    "lng": 117.193528
+  },
+  {
+    "id": 15,
+    "name": "Air Terjun Pinang Seribu",
+    "slug": "air-terjun-pinang-seribu",
+    "lokasi": "Samrinda Utara",
+    "alamat": "H5X4+59J, Unnamed Road, Sempaja Utara, Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75127",
+    "image": "ATPS.jpg",
+    "lat": -0.4020354,
+    "lng": 117.155879
+  },
+  {
+    "id": 16,
+    "name": "Teluk Lerong Garden",
+    "slug": "teluk-lerong-garden",
+    "lokasi": "Samarinda Ulu",
+    "alamat": "F4XM+GJ2, Jl. RE Martadinata, Tlk. Lerong Ilir, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75128",
+    "image": "TLG.jpeg",
+    "lat": -0.5012369,
+    "lng": 117.134015
+  },
+  {
+    "id": 17,
+    "name": "Taman Samarendah",
+    "slug": "taman-samarendah",
+    "lokasi": "Samarinda Kota",
+    "alamat": "Jl. Bhayangkara, Bugis, Kec. Samarinda Kota, Kota Samarinda, Kalimantan Timur 75242",
+    "image": "TS.jpg",
+    "lat": -0.4967416,
+    "lng": 117.1439391
+  },
+  {
+    "id": 18,
+    "name": "Taman Cerdas Samarinda",
+    "slug": "taman-cerdas-samarinda",
+    "lokasi": "Samarinda Ulu",
+    "alamat": "Jl. Mayor Jendral S. Parman, Gn. Kelua, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75123",
+    "image": "TCS.jpeg",
+    "lat": -0.4763196,
+    "lng": 117.1500683
+  },
+  {
+    "id": 19,
+    "name": "Museum Kota Samarinda",
+    "slug": "museum-kota-samarinda",
+    "lokasi": "Samarinda Kota",
+    "alamat": "Jl. Bhayangkara No.1, Bugis, Kec. Samarinda Kota, Kota Samarinda, Kalimantan Timur 75121",
+    "image": "MKS.jpg",
+    "lat": -0.496282,
+    "lng": 117.144568
+  },
+  {
+    "id": 20,
+    "name": "Bukit Steling Selili Samarinda",
+    "slug": "bukit-steling-selili-samarinda",
+    "lokasi": "Samarinda Ilir",
+    "alamat": "F5M6+34V, Selili, Kec. Samarinda Ilir, Kota Samarinda, Kalimantan Timur 75251",
+    "image": "BS3.jpeg",
+    "lat": -0.5172523,
+    "lng": 117.1602981
+  },
+  {
+    "id": 21,
+    "name": "Puncak Samarinda",
+    "slug": "puncak-samarinda",
+    "lokasi": "Samarinda Utara",
+    "alamat": "M6F4+37R, Jl. Berambai, Sempaja Utara, Kec. Samarinda Utara, Kota Samarinda, Kalimantan Timur 75124",
+    "image": "PS.jpeg",
+    "lat": -0.3272589,
+    "lng": 117.2056286
+  }
+]

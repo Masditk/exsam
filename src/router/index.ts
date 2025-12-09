@@ -5,6 +5,8 @@ import BudayaSejarah from '@/pages/BudayaSejarah.vue'
 import Tentang from '@/pages/Tentang.vue'
 import DetailDestinasi from '@/pages/DetailDestinasi.vue'
 import PetaInteraktif from '@/pages/PetaInteraktif.vue'
+import SearchResult from '@/pages/SearchPage.vue'
+import DetailBudaya from '@/pages/DetailBudaya.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -22,9 +24,16 @@ const router = createRouter({
       },
     },
     {
-      path: '/destinasi/:id',
+      path: '/destinasi/:slug',
       component: DetailDestinasi,
-      props: true,
+      meta: {
+        navbarColor: '#0F2462',
+        offsetTop: 20,
+      },
+    },
+    {
+      path: '/budaya-sejarah/:slug',
+      component: DetailBudaya,
       meta: {
         navbarColor: '#0F2462',
         offsetTop: 20,
@@ -38,7 +47,22 @@ const router = createRouter({
         offsetTop: 20,
       },
     },
+    {
+      path: '/search',
+      component: SearchResult,
+      meta: {
+        navbarColor: '#0F2462',
+        offsetTop: 40,
+      },
+    },
   ],
+
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    return { top: 0 }
+  },
 })
 
 export default router

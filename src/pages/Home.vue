@@ -19,28 +19,21 @@
 
   <div class="px-6 flex flex-col gap-y-5 mt-5 mb-5">
     <div>
-      <CardListHeader title="Destinasi Wisata" subtitle="Destinasi wisata yang ada di Samarinda" />
-      <CardList
-        :items="[
-          { id: 1, name: 'Croatia' },
-          { id: 2, name: 'Morocco' },
-          { id: 3, name: 'Mexico', img: image9 },
-        ]"
+      <CardListHeader
+        title="Destinasi Wisata"
+        subtitle="Destinasi wisata yang ada di Samarinda"
+        @see-all="() => router.push('/destinasi')"
       />
+      <CardList basePath="destinasi" />
     </div>
 
     <div>
       <CardListHeader
         title="Budaya dan Sejarah"
         subtitle="Eksplorasi budaya lokal dan peninggalan sejarah di Samarinda"
+        @see-all="() => router.push('/budaya-sejarah')"
       />
-      <CardList
-        :items="[
-          { id: 1, name: 'Croatia' },
-          { id: 2, name: 'Morocco' },
-          { id: 3, name: 'Mexico', img: image },
-        ]"
-      />
+      <CardList base-path="budaya-sejarah" />
     </div>
   </div>
 </template>
@@ -48,10 +41,11 @@
 <script setup lang="ts">
 import CardList from '@/components/CardList.vue'
 import CardListHeader from '@/components/CardListHeader.vue'
-import image9 from '@/assets/image-9.png'
-import image from '@/assets/image.png'
 import landmarkKotaSamarinda from '@/assets/landmark-kota-samarinda-istock-1468649261-ratio-16x9-1.png'
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const emit = defineEmits(['hero-height'])
 

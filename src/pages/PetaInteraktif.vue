@@ -21,9 +21,13 @@
             <label class="block text-lg md:text-xl font-medium text-black mb-2"> Kecamatan </label>
             <div class="relative">
               <select
+                v-model="selectedKecamatan"
                 class="w-full border border-black/30 rounded-xl px-3 py-2 md:py-2.5 text-base md:text-lg font-normal bg-white pr-10"
               >
                 <option>Semua Kecamatan</option>
+                <option v-for="lok in uniqueKecamatan" :key="lok" :value="lok">
+                  {{ lok }}
+                </option>
               </select>
             </div>
           </div>
@@ -32,6 +36,7 @@
             <label class="block text-lg md:text-xl font-medium text-black mb-2"> Pencarian </label>
             <input
               type="text"
+              v-model="search"
               placeholder="Cari destinasi disini..."
               class="w-full border border-black/30 rounded-xl px-3 py-2 md:py-2.5 text-base md:text-lg font-normal"
             />
@@ -39,14 +44,7 @@
         </div>
       </div>
 
-      <MapView
-        :lat="detail.lat"
-        :lng="detail.lng"
-        :selectedDestination="{
-          name: 'Air Terjun Tanah Merah',
-          image: image,
-        }"
-      />
+      <MapView :destinations="filteredDestinations" />
 
       <div class="mt-5">
         <h2 class="text-2xl font-semibold mb-4">Temukan Destinasi Lainnya!</h2>
@@ -76,15 +74,31 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import MapView from '@/components/MapView.vue'
 import CardList from '@/components/CardList.vue'
-import image from '@/assets/image 24.png'
+import destinasiData from '@/data/destinasi.json'
 
-const detail = {
-  lat: -0.4501,
-  lng: 117.1495,
-}
+const search = ref('')
+const selectedKecamatan = ref('Semua Kecamatan')
+
+const filteredDestinations = computed(() =>
+  destinasiData.filter((dest) => {
+    const matchName = dest.name.toLowerCase().includes(search.value.toLowerCase())
+
+    const matchKec =
+      !selectedKecamatan.value || selectedKecamatan.value === 'Semua Kecamatan'
+        ? true
+        : dest.lokasi === selectedKecamatan.value
+
+    return matchName && matchKec
+  }),
+)
+
+const uniqueKecamatan = computed(() => {
+  const kecs = destinasiData.map((d) => d.lokasi)
+  return Array.from(new Set(kecs))
+})
 
 const emit = defineEmits(['hero-height'])
 

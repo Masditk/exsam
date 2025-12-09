@@ -5,9 +5,10 @@
       <CardItem
         v-for="item in items"
         :key="item.id"
-        :id="item.id"
+        :slug="item.slug"
         :name="item.name"
-        :img="item.img"
+        :image="item.image"
+        :basePath="basePath"
       />
     </div>
 
@@ -27,9 +28,10 @@ import CardItem from '@/components/CardItem.vue'
 import Pagination from '@/components/Pagination.vue'
 
 defineProps<{
-  items: Array<{ id: number; name: string; img: string }>
+  items: Array<{ id: number; slug: string; name: string; image: string }>
   currentPage: number
   totalPages: number
+  basePath?: string
 }>()
 
 defineEmits(['update:page'])

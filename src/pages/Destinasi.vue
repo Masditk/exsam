@@ -36,6 +36,7 @@
     :items="paginatedItems"
     :currentPage="currentPage"
     :totalPages="totalPages"
+    basePath="/destinasi"
     @update:page="currentPage = $event"
   />
 </template>
@@ -45,36 +46,35 @@ import { ref, computed, onMounted } from 'vue'
 import CardGrid from '@/components/CardGrid.vue'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
 import imageDestinasi from '@/assets/Rectangle 43.png'
+import destinasiData from '@/data/destinasi.json'
 
 const search = ref('')
 
-/* ---------------------------
-   ALL DATA DARI DESTINASI
---------------------------- */
 const items = ref(
-  Array.from({ length: 100 }, (_, i) => ({
-    id: i + 1,
-    name: `Tempat Wisata ${i + 1}`,
-    img: '',
+  destinasiData.map((d) => ({
+    ...d,
+    image: new URL(`../assets/destinasi/${d.image}`, import.meta.url).href,
   })),
 )
 
 const currentPage = ref(1)
-const itemsPerPage = 15 // 5x3 grid per page
+const itemsPerPage = 15
 
-const totalPages = computed(() => Math.ceil(items.value.length / itemsPerPage))
+const filteredItems = computed(() =>
+  items.value.filter((item) => item.name.toLowerCase().includes(search.value.toLowerCase())),
+)
+
+const totalPages = computed(() => Math.ceil(filteredItems.value.length / itemsPerPage))
 
 const paginatedItems = computed(() => {
-  const filtered = items.value.filter((i) =>
-    i.name.toLowerCase().includes(search.value.toLowerCase()),
+  const filtered = items.value.filter((item) =>
+    item.name.toLowerCase().includes(search.value.toLowerCase()),
   )
+
   const start = (currentPage.value - 1) * itemsPerPage
   return filtered.slice(start, start + itemsPerPage)
 })
 
-/* ---------------------------
-   HERO HEIGHT EMITTER
---------------------------- */
 const emit = defineEmits(['hero-height'])
 
 onMounted(() => {

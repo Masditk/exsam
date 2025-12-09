@@ -5,7 +5,12 @@
       <p class="text-gray-500 text-sm">{{ subtitle }}</p>
     </div>
 
-    <button class="text-blue-600 font-semibold hover:underline cursor-pointer">Lihat Semua</button>
+    <button
+      @click="$emit('see-all')"
+      class="text-blue-600 font-semibold hover:underline cursor-pointer"
+    >
+      Lihat Semua
+    </button>
   </div>
 </template>
 
@@ -14,4 +19,6 @@ defineProps<{
   title: string
   subtitle: string
 }>()
+
+defineEmits(['see-all'])
 </script>

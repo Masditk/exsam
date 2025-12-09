@@ -7,61 +7,71 @@
     :style="{ backgroundColor: background }"
   >
     <div class="flex items-center justify-between py-3 px-6">
-      <img
-        :src="logo"
-        alt="Logo"
-        class="h-10 w-auto object-contain transition-all duration-300"
-        :class="scrolledPastHero ? 'brightness-0 invert-0' : 'brightness-0 invert'"
-      />
+      <router-link to="/">
+        <img
+          :src="logo"
+          alt="Logo"
+          class="h-10 w-auto object-contain transition-all duration-300"
+          :class="scrolledPastHero ? 'brightness-0 invert-0' : 'brightness-0 invert'"
+        />
+      </router-link>
 
       <ul
         class="flex gap-6 font-semibold text-lg transition-all duration-300"
         :class="scrolledPastHero ? 'text-black' : 'text-white'"
       >
-        <router-link to="/" class="cursor-pointer hover:opacity-60">Home</router-link>
-        <router-link to="/destinasi" class="cursor-pointer hover:opacity-60">Destinasi</router-link>
-        <router-link to="/budaya-sejarah" class="cursor-pointer hover:opacity-60"
+        <router-link to="/" class="cursor-pointer hover:opacity-60" :class="isActive('/')"
+          >Home</router-link
+        >
+        <router-link
+          to="/destinasi"
+          class="cursor-pointer hover:opacity-60"
+          :class="isActive('/destinasi')"
+          >Destinasi</router-link
+        >
+        <router-link
+          to="/budaya-sejarah"
+          class="cursor-pointer hover:opacity-60"
+          :class="isActive('/budaya-sejarah')"
           >Budaya dan Sejarah</router-link
         >
-        <router-link to="/peta-interaktif" class="cursor-pointer hover:opacity-60"
+        <router-link
+          to="/peta-interaktif"
+          class="cursor-pointer hover:opacity-60"
+          :class="isActive('/peta-interaktif')"
           >Peta Interaktif</router-link
         >
-        <router-link to="/tentang" class="cursor-pointer hover:opacity-60">Tentang</router-link>
+        <router-link
+          to="/tentang"
+          class="cursor-pointer hover:opacity-60"
+          :class="isActive('/tentang')"
+          >Tentang</router-link
+        >
       </ul>
 
       <div class="relative flex items-center w-[50px] md:w-[60px] justify-end">
-        <MagnifyingGlassIcon
-          v-show="!searchActive"
-          class="h-7 w-7 cursor-pointer transition-opacity duration-300"
-          :class="[
-            scrolledPastHero ? 'text-black' : 'text-white',
-            searchActive ? 'opacity-0 pointer-events-none' : 'opacity-100',
-          ]"
-          @click="openSearch"
-        />
-
+        <!-- Input Search -->
         <transition name="fade-slide">
-          <div
+          <input
             v-show="searchActive"
-            class="absolute right-0 flex items-center transition-all duration-300"
-          >
-            <MagnifyingGlassIcon
-              class="absolute left-2 h-5 w-5 pointer-events-none transition-all duration-300"
-              :class="scrolledPastHero ? 'text-black' : 'text-white'"
-            />
-
-            <input
-              type="text"
-              v-model="query"
-              ref="searchInput"
-              placeholder="Cari..."
-              @blur="closeSearch"
-              @keydown.esc="closeSearch"
-              class="w-40 md:w-48 pl-9 pr-3 py-1 rounded-lg outline-none border border-gray-300 transition-all duration-300"
-              :class="inputTextClass"
-            />
-          </div>
+            type="text"
+            v-model="query"
+            ref="searchInput"
+            placeholder="Cari..."
+            @blur="!preventBlur && closeSearch()"
+            @keydown.esc="closeSearch"
+            @keydown.enter="doSearch"
+            class="w-40 pl-3 pr-10 py-1 rounded-lg outline-none border border-gray-300 transition-all duration-300"
+            :class="inputTextClass"
+          />
         </transition>
+
+        <!-- Glass Icon Utama (ikon tetap berada di kanan input) -->
+        <MagnifyingGlassIcon
+          class="absolute right-2 h-6 w-6 cursor-pointer transition-opacity duration-300 z-20"
+          :class="scrolledPastHero ? 'text-black' : 'text-white'"
+          @mousedown.prevent="handleSearchClick"
+        />
       </div>
     </div>
   </nav>
@@ -70,9 +80,13 @@
 <script setup lang="ts">
 import { onMounted, ref, nextTick, computed } from 'vue'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
-import logo from '@/assets/image-1-5-removebg-preview-1.png'
+import { useRouter, useRoute } from 'vue-router'
+import logo from '@/assets/logo.png'
 
+const router = useRouter()
+const route = useRoute()
 const searchActive = ref(false)
+const preventBlur = ref(false)
 const query = ref('')
 const searchInput = ref<HTMLInputElement | null>(null)
 const emit = defineEmits(['navbar-height'])
@@ -93,6 +107,23 @@ const props = defineProps({
   },
 })
 
+const handleSearchClick = () => {
+  preventBlur.value = true
+
+  if (searchActive.value) {
+    doSearch()
+  } else {
+    openSearch()
+    nextTick(() => {
+      searchInput.value?.focus()
+    })
+  }
+
+  setTimeout(() => {
+    preventBlur.value = false
+  }, 50)
+}
+
 function openSearch() {
   searchActive.value = true
 
@@ -104,6 +135,26 @@ function openSearch() {
 function closeSearch() {
   searchActive.value = false
   query.value = ''
+}
+
+function doSearch() {
+  if (!query.value) return
+
+  router.push(`/search?q=${query.value.trim()}`)
+
+  closeSearch()
+}
+
+const isActive = (path: string) => {
+  if (path === '/') {
+    return route.path === '/' ? 'underline decoration-2 underline-offset-4' : ''
+  } else {
+    return route.path.startsWith(path)
+      ? props.scrolledPastHero
+        ? 'underline decoration-2 underline-offset-4 text-black'
+        : 'underline decoration-2 underline-offset-4 text-white'
+      : ''
+  }
 }
 
 onMounted(() => {

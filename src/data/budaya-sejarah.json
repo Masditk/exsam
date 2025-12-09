@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Rumah Lamin",
+    "slug": "rumah-lamin",
+    "image": "RL.jpg",
+    "deskripsi": "Rumah Lamin adalah rumah tradisional suku Dayak di Kalimantan Timur yang memiliki struktur panjang, terbuat dari kayu, dan dihiasi ukiran khas Dayak. Rumah ini biasanya dihuni oleh satu keluarga besar atau beberapa keluarga yang saling terhubung. Rumah Lamin memiliki fungsi sosial dan budaya yang penting, menjadi pusat kegiatan adat, pertemuan, dan ritual komunitas.",
+    "sejarah": "Sejarah Rumah Lamin bermula dari tradisi masyarakat Dayak dalam membangun hunian komunal yang kuat dan tahan lama. Setiap rumah memiliki ukiran dan simbol yang menggambarkan cerita leluhur, mitos, dan identitas suku. Rumah Lamin juga digunakan untuk upacara adat, perayaan panen, serta sebagai tempat menyimpan benda-benda pusaka keluarga. Keberadaan Rumah Lamin menegaskan pentingnya nilai kekeluargaan dan kerjasama dalam masyarakat Dayak."
+  },
+  {
+    "id": 2,
+    "name": "Tari Hudoq",
+    "slug": "tari-hudoq",
+    "image": "TH.jpg",
+    "deskripsi": "Tari Hudoq adalah tarian tradisional masyarakat Dayak yang menggambarkan semangat panen dan penghormatan terhadap roh leluhur. Penari menggunakan topeng yang menyerupai hewan dan roh, serta kostum berwarna-warni yang mencolok. Tarian ini biasanya dilakukan secara berkelompok dengan gerakan dinamis yang energik dan ritmis.",
+    "sejarah": "Tari Hudoq memiliki akar budaya yang sangat tua, berkaitan dengan upacara penyambutan panen padi. Tarian ini diyakini dapat mengusir roh jahat dan mendatangkan berkah bagi hasil pertanian. Setiap gerakan dan topeng memiliki makna simbolis, seperti perlindungan dari kekuatan jahat dan penghormatan terhadap alam. Tari Hudoq menjadi warisan budaya yang dilestarikan hingga saat ini melalui pertunjukan dan festival adat."
+  },
+  {
+    "id": 3,
+    "name": "Kancet Lasan",
+    "slug": "kancet-lasan",
+    "image": "KL.jpeg",
+    "deskripsi": "Kancet Lasan adalah pakaian adat tradisional suku Dayak yang biasanya digunakan dalam upacara penting, seperti pernikahan dan ritual adat. Pakaian ini terbuat dari kain tenun dengan motif khas Dayak, dihiasi manik-manik, bulu burung, dan ornamen warna-warni yang menonjolkan estetika dan simbol budaya suku.",
+    "sejarah": "Sejarah Kancet Lasan mencerminkan identitas sosial dan status seseorang dalam masyarakat Dayak. Setiap motif dan warna memiliki makna khusus, seperti keberanian, kesuburan, dan perlindungan. Pakaian ini diwariskan dari generasi ke generasi, dan proses pembuatannya memerlukan keterampilan tenun yang tinggi. Kancet Lasan juga menjadi simbol kebanggaan budaya dan sering dipertunjukkan dalam festival serta upacara adat."
+  },
+  {
+    "id": 4,
+    "name": "Kain Tenun",
+    "slug": "kain-tenun",
+    "image": "KT.jpeg",
+    "deskripsi": "Kain Tenun Dayak adalah hasil kerajinan tangan masyarakat Dayak yang dibuat dengan teknik menenun tradisional menggunakan alat tenun bukan mesin. Kain ini memiliki motif geometris dan simbolik yang kaya akan nilai budaya, serta sering digunakan sebagai pakaian adat, hiasan rumah, atau upacara adat.",
+    "sejarah": "Kain Tenun memiliki sejarah panjang sebagai media ekspresi budaya dan identitas suku Dayak. Motif dan pola kain mencerminkan cerita rakyat, filosofi hidup, dan adat istiadat. Proses pembuatan kain tenun dilakukan secara manual dan membutuhkan ketelitian tinggi, sehingga setiap helai kain menjadi karya seni yang bernilai tinggi. Kain Tenun juga digunakan sebagai alat barter dan hadiah pada acara adat tertentu."
+  },
+  {
+    "id": 5,
+    "name": "Lom Plai",
+    "slug": "lom-plai",
+    "image": "LP.jpeg",
+    "deskripsi": "Lom Plai adalah alat musik tradisional suku Dayak berupa gendang atau drum yang digunakan untuk mengiringi tarian dan ritual adat. Lom Plai terbuat dari kayu dan kulit binatang, menghasilkan bunyi yang khas dan resonan. Alat musik ini menjadi elemen penting dalam pertunjukan musik tradisional dan kegiatan sosial masyarakat Dayak.",
+    "sejarah": "Sejarah Lom Plai terkait erat dengan kehidupan sosial dan budaya masyarakat Dayak. Alat musik ini digunakan dalam upacara panen, perayaan, dan ritual keagamaan untuk menandai momen penting. Setiap bunyi yang dihasilkan Lom Plai memiliki makna simbolis, seperti panggilan komunitas, ritme tarian, dan komunikasi dengan roh leluhur. Lom Plai tetap dilestarikan sebagai bagian dari warisan musik tradisional Dayak."
+  }
+]
