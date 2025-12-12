@@ -7,6 +7,7 @@ import DetailDestinasi from '@/pages/DetailDestinasi.vue'
 import PetaInteraktif from '@/pages/PetaInteraktif.vue'
 import SearchResult from '@/pages/SearchPage.vue'
 import DetailBudaya from '@/pages/DetailBudaya.vue'
+import AboutMe from '@/pages/AboutMe.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -53,6 +54,14 @@ const router = createRouter({
       meta: {
         navbarColor: '#0F2462',
         offsetTop: 40,
+      },
+    },
+    {
+      path: '/about-me',
+      component: AboutMe,
+      meta: {
+        navbarColor: '#0F2462',
+        offsetTop: 20,
       },
     },
   ],

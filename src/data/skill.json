@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "JavaScript",
+    "slug": "javascript",
+    "image": "RL.jpg",
+    "deskripsi": "Lorem Ipsum",
+    "sejarah": "Lorem Ipsum"
+  },
+  {
+    "id": 2,
+    "name": "Vue",
+    "slug": "vue",
+    "image": "TH.jpg",
+    "deskripsi": "Lorem Ipsum",
+    "sejarah": "Lorem Ipsum"
+  },
+  {
+    "id": 3,
+    "name": "TailwindCSS",
+    "slug": "tailwindcss",
+    "image": "KL.jpeg",
+    "deskripsi": "Lorem Ipsum",
+    "sejarah": "Lorem Ipsum"
+  }
+]

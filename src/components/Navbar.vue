@@ -48,6 +48,13 @@
           :class="isActive('/tentang')"
           >Tentang</router-link
         >
+
+        <router-link
+          to="/about-me"
+          class="cursor-pointer hover:opacity-60"
+          :class="isActive('/about-me')"
+          >About Me</router-link
+        >
       </ul>
 
       <div class="relative flex items-center w-[60px] justify-end">
@@ -191,6 +198,15 @@
               class="block px-4 py-3 text-gray-900 hover:bg-gray-50 transition-colors"
               @click="mobileMenuOpen = false"
               >Tentang</router-link
+            >
+          </li>
+
+          <li>
+            <router-link
+              to="/about-me"
+              class="block px-4 py-3 text-gray-900 hover:bg-gray-50 transition-colors"
+              @click="mobileMenuOpen = false"
+              >About Me</router-link
             >
           </li>
         </ul>
